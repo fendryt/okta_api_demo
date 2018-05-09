@@ -28,10 +28,13 @@ LNKD_IDP = settings.LNKD_IDP
 SAML_IDP = settings.SAML_IDP
 
 DEFAULT_BACKGROUND = '/static/img/okta-brand/background/SFbayBridge.jpg'
+DEFAULT_LOGO = '/static/img/okta-brand/logo/okta32x32.png'
 BACKGROUND_IMAGE = settings.BACKGROUND_IMAGE_DEFAULT
 BACKGROUND_IMAGE_CSS = settings.BACKGROUND_IMAGE_CSS
 BACKGROUND_IMAGE_AUTHJS = settings.BACKGROUND_IMAGE_AUTHJS
 BACKGROUND_IMAGE_IDP = settings.BACKGROUND_IMAGE_IDP
+ORGANIZATION_LOGO = settings.ORGANIZATION_LOGO
+
 
 DEFAULT_PORT = '8000'
 if settings.DEFAULT_PORT and settings.DEFAULT_PORT != 'None':
@@ -74,6 +77,7 @@ c = {
     "aud": CLIENT_ID,
     "background": BACKGROUND_IMAGE if BACKGROUND_IMAGE is not None else DEFAULT_BACKGROUND,
     "background_css": BACKGROUND_IMAGE_CSS if BACKGROUND_IMAGE_CSS is not None else DEFAULT_BACKGROUND,
+    "organization_icon": ORGANIZATION_LOGO if ORGANIZATION_LOGO is not None else DEFAULT_LOGO,
     "background_authjs": BACKGROUND_IMAGE_AUTHJS if BACKGROUND_IMAGE_AUTHJS is not None else DEFAULT_BACKGROUND,
     "background_idp": BACKGROUND_IMAGE_IDP if BACKGROUND_IMAGE_IDP is not None else DEFAULT_BACKGROUND,
     "idp_disco_page": IDP_DISCO_PAGE if IDP_DISCO_PAGE is not None else 'None',
