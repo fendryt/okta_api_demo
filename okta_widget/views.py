@@ -34,7 +34,7 @@ BACKGROUND_IMAGE_CSS = settings.BACKGROUND_IMAGE_CSS
 BACKGROUND_IMAGE_AUTHJS = settings.BACKGROUND_IMAGE_AUTHJS
 BACKGROUND_IMAGE_IDP = settings.BACKGROUND_IMAGE_IDP
 ORGANIZATION_LOGO = settings.ORGANIZATION_LOGO
-
+HTML_TITLE = settings.HTML_TITLE
 
 DEFAULT_PORT = '8000'
 if settings.DEFAULT_PORT and settings.DEFAULT_PORT != 'None':
@@ -78,6 +78,7 @@ c = {
     "background": BACKGROUND_IMAGE if BACKGROUND_IMAGE is not None else DEFAULT_BACKGROUND,
     "background_css": BACKGROUND_IMAGE_CSS if BACKGROUND_IMAGE_CSS is not None else DEFAULT_BACKGROUND,
     "organization_icon": ORGANIZATION_LOGO if ORGANIZATION_LOGO is not None else DEFAULT_LOGO,
+    "html_title": HTML_TITLE if HTML_TITLE is not None else 'Oktaprise Demo',
     "background_authjs": BACKGROUND_IMAGE_AUTHJS if BACKGROUND_IMAGE_AUTHJS is not None else DEFAULT_BACKGROUND,
     "background_idp": BACKGROUND_IMAGE_IDP if BACKGROUND_IMAGE_IDP is not None else DEFAULT_BACKGROUND,
     "idp_disco_page": IDP_DISCO_PAGE if IDP_DISCO_PAGE is not None else 'None',
@@ -127,9 +128,11 @@ def view_profile(request):
              'org': BASE_URL,
              "js": _do_format(request, url_js, page)
              }
+
+        c.update(p)
     else:
         return HttpResponseRedirect(reverse('not_authenticated'))
-    return render(request, 'profile.html', p)
+    return render(request, 'profile.html', c)
 
 
 def view_tokens(request):
